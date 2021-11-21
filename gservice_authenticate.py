@@ -66,14 +66,4 @@ class GService:
         google_service = build(self.service_name,self.version,credentials=creds)
         return google_service
     
-if __name__=='__main__':
-    
-    sheets_scopes = ["https://www.googleapis.com/auth/spreadsheets"]
-    gmail_scopes = ["https://mail.google.com/"]
-    
-    sheets = GService('sheets','v4',sheets_scopes).ouuth('OAuthCredentials.json')
-    gmail = GService('gmail','v1',gmail_scopes).serviceaccount('ServiceAccountCredentials.json')
-    
-    
-    
     

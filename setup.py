@@ -20,7 +20,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url='https://github.com/raichandanisagar/gservice-api',
     license='MIT',
-    packages=['gservice-api-tools'],
+    packages=['gservice_api_tools'],
     install_requires=['google-api-core','google-api-python-client','google-auth',
                       'google-auth-httplib2','google-auth-oauthlib','googleapis-common-protos',
                       'pandas']

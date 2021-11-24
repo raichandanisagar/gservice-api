@@ -11,7 +11,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
     
 setuptools.setup(
-    name='toolbox',
+    name='gservice-api',
     version='0.0.1',
     author='Sagar Raichandani',
     author_email='raichandanisagar@gmail.com',
@@ -20,7 +20,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url='https://github.com/raichandanisagar/gservice-api',
     license='MIT',
-    packages=['toolbox'],
+    packages=['gservice-api'],
     install_requires=['google-api-core','google-api-python-client','google-auth',
                       'google-auth-httplib2','google-auth-oauthlib','googleapis-common-protos',
                       'pandas']

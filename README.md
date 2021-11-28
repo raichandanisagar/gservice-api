@@ -16,7 +16,7 @@ Personal project to create a python package that makes working with Google APIs 
 # Usage
 pip install git+https://github.com/raichandanisagar/gservice-api
 
-Once installed, import methods/functions from the different packages to autheticate to g-suite services and utilize the aforementioned featues.
+Once installed, import methods/functions from the different packages to autheticate g-suite services and utilize the aforementioned featues.
 
 
 ## Example

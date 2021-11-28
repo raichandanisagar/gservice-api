@@ -23,7 +23,7 @@ Once installed, import methods/functions from the different packages to authetic
 
 from gservice_api_tools import gservice_authenticate as gsa, gservice_bigquery as gbq
 
-bigquery_scopes = ['https://www.googleapis.com/auth/bigquery']
+bigquery_scopes = ['https://www.googleapis.com/auth/bigquery']<br>
 bigquery_service = GService('bigquery','v2',bigquery_scopes).oauth('OAuthCredentials.json')
 
 bigquery_project = gbq().Bigquery(bigquery_service,'PROJECT_NAME')

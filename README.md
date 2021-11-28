@@ -19,3 +19,13 @@ pip install git+https://github.com/raichandanisagar/gservice-api
 Once installed, import methods/functions from the different packages to autheticate to g-suite services and utilize the aforementioned featues.
 
 
+## Example
+
+from gservice_api_tools import gservice_authenticate as gsa, gservice_bigquery as gbq
+
+bigquery_scopes = ['https://www.googleapis.com/auth/bigquery']
+bigquery_service = GService('bigquery','v2',bigquery_scopes).oauth('OAuthCredentials.json')
+
+bigquery_project = gbq().Bigquery(bigquery_service,'PROJECT_NAME')
+query = #Query string; example- 'SELECT * FROM bigquery-public-data.usa_names.usa_1910_2013 limit 10'
+query_response = bq.fetch_query_results(query)

@@ -1,5 +1,5 @@
 ### gservice-api
-Personal project to create a python package that makes working with Google APIs simpler.
+A python package that makes working with Google APIs simpler.
 
 ### Features
 - Support oauth and service account authentication for host of g-suite services- Sheets, BigQuery, GoogleAnalytics, Gmail, Drive, etc. <br>

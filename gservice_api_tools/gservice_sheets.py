@@ -111,15 +111,4 @@ class Spreadsheet:
         else:
             data = [data_dict['columns']]+data_dict['data']
         
-        self.post_values(sheet_name,data,clear_all=clear_all,create_sheet=create_sheet)       
-    
-
-if __name__=='__main__':
-    sheets_scopes = ["https://www.googleapis.com/auth/spreadsheets"]
-    sheets_service = GService('sheets','v4',scopes=sheets_scopes).OAuth('OAuthCredentials.json')
-    py_spreadsheet = Spreadsheet(sheets_service,'1uLsaEUxOOjpWKzSRedpco66DoqiwrG-zcnsdKjrcWJY')
-#    data_values = py_spreadsheet.fetch_values('Data')['values']
-#    py_spreadsheet.post_values(sheet_name='ABCD',data=data_values)
-#    
-#    df = pd.DataFrame(data=[[1,2,3,4],[5,6,7,7]],columns=['A','B','C','D'])
-#    py_spreadsheet.push_dataframe(sheet_name='ABCD_',dataframe=df)
+        self.post_values(sheet_name,data,clear_all=clear_all,create_sheet=create_sheet)

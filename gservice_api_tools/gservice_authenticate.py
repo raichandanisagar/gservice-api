@@ -11,59 +11,52 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2 import service_account
 
-
 class GService:
-    """Build & authenticate object to access different g-suite services--
-    Sheets, BigQuery, GoogleAnalytics, Gmail, Drive, etc."""
+  """Build & authenticate service object to access g-suite--
+  Sheets, BigQuery, GoogleAnalytics, Gmail, Drive, etc.
+  Args:
+      service_name: string, name of the request service API
+      version: string, version of request service API
+      scopes: list, authentication scopes requested"""
+  
+  def __init__(self,service_name,version,scopes):
+    self.service_name = service_name
+    self.version = version
+    self.scopes = scopes
     
-    def __init__(self,service_name,version,scopes):
-        """Args:
-            service_name: string, name of the request service API
-            version: string, version of request service API
-            scopes: list, authentication scopes requested"""
+  def oauth(self,credentials,store_refresh_token=True):
+    """Args:
+      credentials: JSON file that stores Google's OAuth token
+      store_refresh_token: Bool to create a pickle file that stores 
+      refresh token to avoid repetitive logins"""
+      
+    refresh_token=None
+    if(store_refresh_token):
+      refresh_token='{}{}_rt.pickle'.format(self.service_name,self.version)
+    creds = None
+    if (refresh_token!=None and os.path.exists(refresh_token)):
+      with open(refresh_token, 'rb') as token:
+        creds = pickle.load(token)
         
-        self.service_name = service_name
-        self.version = version
-        self.scopes = scopes
-        
-    def oauth(self,credentials_filepath,store_refresh_token=True):
-        """Args:
-            credentials_filepath: JSON file that stores Google's OAuth token
-            store_refresh_token: Bool to create a pickle file that stores 
-            refresh token to eliminate repetitive logins"""
-        
-        if(store_refresh_token):
-            refresh_token_filepath='{}{}_refresh_token.pickle'.format(self.service_name,self.version)
-        else:
-            refresh_token_filepath=None
-        
-        creds = None
-        if (refresh_token_filepath!=None and os.path.exists(refresh_token_filepath)):
-            with open(refresh_token_filepath, 'rb') as token:
-                creds = pickle.load(token)
-        
-        #If there are no valid credentials in the pickle file
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file(credentials_filepath,self.scopes)
-                creds = flow.run_local_server(port=0)
-            
-            # Save the credentials for the next run
-            if(refresh_token_filepath!=None):
-                with open(refresh_token_filepath, 'wb') as token:
-                    pickle.dump(creds, token)
-                    
-        google_service = build(self.service_name,self.version,credentials=creds)
-        return google_service
-    
-    def service_account(self,credentials_filepath):
-        """Args:
-            credentials_filepath: JSON file that stores Service Account credentials"""
-            
-        creds = service_account.Credentials.from_service_account_file(credentials_filepath,scopes=self.scopes)
-        google_service = build(self.service_name,self.version,credentials=creds)
-        return google_service
-    
-    
+    #If there are no valid credentials in the pickle file
+    if not creds or not creds.valid:
+      if creds and creds.expired and creds.refresh_token:
+        creds.refresh(Request())
+      else:
+        flow = InstalledAppFlow.from_client_secrets_file(credentials,self.scopes)
+        creds = flow.run_local_server(port=0)
+      # Save credentials to pickle for the next run
+      if(refresh_token!=None):
+        with open(refresh_token, 'wb') as token:
+          pickle.dump(creds, token)
+    google_service = build(self.service_name,self.version,credentials=creds)
+    return google_service
+  
+  def service_account(self,credentials):
+    """credentials: JSON file that stores Service Account credentials"""
+
+    creds = service_account.Credentials.from_service_account_file(credentials,scopes=self.scopes)
+    google_service = build(self.service_name,self.version,credentials=creds)
+    return google_service
+  
+  

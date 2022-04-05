@@ -12,7 +12,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     
 setuptools.setup(
     name='gservice-api',
-    version='0.0.1',
+    version='0.0.2',
     author='Sagar Raichandani',
     author_email='raichandanisagar@gmail.com',
     description='Python package that makes working with Google APIs simpler.',

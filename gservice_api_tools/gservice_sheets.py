@@ -4,7 +4,6 @@
 @author: sagarraichandani
 """
 
-from gservice_authenticate import GService
 from googleapiclient.errors import HttpError
 import pandas as pd
 import socket

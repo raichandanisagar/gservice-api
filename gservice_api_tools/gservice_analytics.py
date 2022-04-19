@@ -4,7 +4,6 @@
 @author: sagarraichandani
 """
 
-from gservice_authenticate import GService
 import datetime as dt
 import pandas as pd
 

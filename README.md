@@ -25,6 +25,3 @@ bigquery_service = GService('bigquery','v2',bigquery_scopes).oauth('OAuthCredent
 bigquery_project = gbq().Bigquery(bigquery_service,'PROJECT_NAME')<br>
 query = 'SELECT * FROM bigquery-public-data.usa_names.usa_1910_2013 limit 10'<br>
 query_response = bq.fetch_query_results(query)
-
-
-test
